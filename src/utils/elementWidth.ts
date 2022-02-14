@@ -45,10 +45,11 @@ function getWidthFromDeviceType(
 function getItemClientSideWidth(
   props: CarouselProps,
   slidesToShow: number,
-  containerWidth: number
+  containerWidth: number,
+  gutter: number
 ): number {
   return Math.round(
-    containerWidth / (slidesToShow + (props.centerMode ? 1 : 0))
+    (containerWidth - (gutter || 0)) / (slidesToShow + ((props.centerMode && !gutter) ? 1 : 0))
   );
 }
 

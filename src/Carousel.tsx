@@ -212,7 +212,8 @@ class Carousel extends React.Component<CarouselProps, CarouselInternalState> {
         this.setContainerAndItemWidth(
           items,
           shouldCorrectItemPosition,
-          resetCurrentSlide
+          resetCurrentSlide,
+          gutter
         );
       }
     });
@@ -221,14 +222,16 @@ class Carousel extends React.Component<CarouselProps, CarouselInternalState> {
   public setContainerAndItemWidth(
     slidesToShow: number,
     shouldCorrectItemPosition?: boolean,
-    resetCurrentSlide?: boolean
+    resetCurrentSlide?: boolean,
+    gutter?: number
   ): void {
     if (this.containerRef && this.containerRef.current) {
       const containerWidth = this.containerRef.current.offsetWidth;
       const itemWidth: number = getItemClientSideWidth(
         this.props,
         slidesToShow,
-        containerWidth
+        containerWidth,
+        gutter
       );
       this.setState(
         {
